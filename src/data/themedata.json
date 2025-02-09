@@ -1,0 +1,42 @@
+{
+   "partners": [
+      {
+         "name": "Vercel",
+         "svg": null,
+         "background": "black"
+      },
+      {
+         "name": "Supabase",
+         "svg": null,
+         "background": "#121212"
+      },
+      {
+         "name": "Tailwind",
+         "svg": null,
+         "background": "#0f172a",
+         "image": "/images/tailwindcsstheme.png"
+      },
+      {
+         "name": "OpenAI",
+         "svg": null,
+         "background": "#121a29"
+      },
+      {
+         "name": "Mintlify",
+         "svg": null,
+         "image": "/images/mintlify-pattern-dark.svg",
+         "background": "radial-gradient(49.63% 57.02% at 58.99% -7.2%, rgba(13, 147, 115, .1) 39.4%, transparent 100%),"
+      },
+      {
+         "name": "Prisma",
+         "svg": null,
+         "background": "linear-gradient(140deg, #0c1d26 0%, #0a0c17 100%)"
+      },
+      {
+         "name": "Clerk",
+         "svg": null,
+         "image": "/images/clerk.svg",
+         "background": "#222"
+      }
+   ]
+}
