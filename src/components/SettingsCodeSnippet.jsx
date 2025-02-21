@@ -103,7 +103,7 @@ white-space: nowrap;
    gap:2rem;
    overflow-x: auto;
  }
-
+  
  
    &::-webkit-scrollbar {
     height:8px; 

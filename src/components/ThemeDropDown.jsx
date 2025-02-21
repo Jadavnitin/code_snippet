@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import { GoChevronUp } from 'react-icons/go';
 import styled from 'styled-components';
 import ThemeContent from './ThemeContent';
@@ -13,23 +13,80 @@ const ThemeDropDown = ({ onThemeSelect }) => {
       whitebackgrounds: "hsla(0, 0%, 100%, .75)",
    });
 
+   
+  
    const [showThemeDropDown, setShowThemeDropDown] = useState(false);
-
+   const dropdownRef = useRef(null);
+   
+   
    const toggleDropdown = () => {
       setShowThemeDropDown((prev) => !prev);
    };
+   
+
+   const disableScroll = (event) => {
+      event.preventDefault();
+   };
  
+    useEffect(() => {
+       const handleClickOutside = (event) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+             setShowLanguageDropDown(false);
+          }
+       };
  
+       if (showThemeDropDown) {
+          document.body.style.overflow = "hidden"; // Disable scrolling
+          document.addEventListener("wheel", disableScroll, { passive: false });
+          document.addEventListener("touchmove", disableScroll, { passive: false });
+       } else {
+          document.body.style.overflow = "auto"; // Enable scrolling again
+          document.removeEventListener("wheel", disableScroll);
+          document.removeEventListener("touchmove", disableScroll);
+       }
+ 
+       document.addEventListener("mousedown", handleClickOutside);
+       return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+          document.body.style.overflow = "auto"; // Ensure scrolling is re-enabled
+          document.removeEventListener("wheel", disableScroll);
+          document.removeEventListener("touchmove", disableScroll);
+       };
+    }, [showThemeDropDown]);
    
    const handleThemeSelect = (theme) => {
-      setSelectedTheme(theme);
+      setSelectedTheme(theme); useEffect(() => {
+         const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+               setShowLanguageDropDown(false);
+            }
+         };
+
+         if (showLanguageDropDown) {
+            document.body.style.overflow = "hidden"; // Disable scrolling
+            document.addEventListener("wheel", disableScroll, { passive: false });
+            document.addEventListener("touchmove", disableScroll, { passive: false });
+         } else {
+            document.body.style.overflow = "auto"; // Enable scrolling again
+            document.removeEventListener("wheel", disableScroll);
+            document.removeEventListener("touchmove", disableScroll);
+         }
+
+         document.addEventListener("mousedown", handleClickOutside);
+         return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.body.style.overflow = "auto"; // Ensure scrolling is re-enabled
+            document.removeEventListener("wheel", disableScroll);
+            document.removeEventListener("touchmove", disableScroll);
+         };
+      }, [showLanguageDropDown]);
       console.log(theme)
       onThemeSelect(theme);  // Pass the selected theme to the parent
       setShowThemeDropDown(false);
    };
 
    return (
-      <ThemeMainContainer>
+      <ThemeMainContainer ref={dropdownRef}>
          <strong>Theme</strong>
          <ThemeContainer onClick={toggleDropdown}>
             {selectedTheme.type === "svg" ? (
@@ -51,7 +108,7 @@ const ThemeDropDown = ({ onThemeSelect }) => {
 export default ThemeDropDown;
 
 const ThemeMainContainer = styled.div`
-  width: 22%;
+  width:150px;
   gap: 0.8rem;
   height: 100%;
   display: flex;
@@ -59,6 +116,11 @@ const ThemeMainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  
+  
+ @media (max-width:765px) {
+   margin-left:10px;
+ }
 `;
 
 const ThemeContainer = styled.button`
@@ -71,10 +133,11 @@ const ThemeContainer = styled.button`
   justify-content: space-between;
   align-items: center;
   height: 35px;
-  width: 55%;
+  width:80px;
   color: white;
   padding: 0.6rem;
   background-color: transparent;
+  position: relative;
 `;
 
 const ThemeImageContainer = styled.span`

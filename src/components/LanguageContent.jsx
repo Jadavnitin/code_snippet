@@ -30,15 +30,14 @@ export default LanguageContent
 const LanguageDropDownContent = styled.div`
 display:flex;
 gap: 0.25rem;
-width: 87%;
 height: auto;
 bottom: 0;
 flex-direction: column;
-right: 0;
 overflow-y: auto; 
 max-height:590px; 
-position: absolute;
+position:fixed;
 padding: 0.6rem;
+z-index:100;
 font-size:0.8rem;
 letter-spacing: 2px;
 color:#B1B1B1;
@@ -50,7 +49,9 @@ transition-duration: 0.3s;
 border-radius: 0.35rem;
 
 
-
+ @media (max-width:765px) {
+   right:10px;
+ }
 
 
   &::-webkit-scrollbar {
@@ -86,5 +87,11 @@ a{
      --blue: #1B9CFD;
      color: var(--blue);
   }
+  
+   @media (max-width: 765px) {
+    scroll-margin: 20px;
+    scroll-snap-align: start;
+    margin-left:10px;
+  } 
   
 `;  

@@ -27,15 +27,14 @@ border:1px solid rgb(65, 65, 65);
 const ThemeDropDownContent = styled.div`
 display:flex;
 gap:0.25rem;
-width: 87%;
 height: auto;
 bottom: 0;
 flex-direction: column;
-right: 0;
 overflow-y: auto; 
 max-height:590px; 
-position: absolute;
+position:fixed;
 padding: 0.6rem;
+z-index:100;
 font-size: 0.7em;
 letter-spacing: 2px;
 color:#B1B1B1;
@@ -65,22 +64,27 @@ border-radius: 0.35rem;
     border-radius: 4px; /* Match thumb rounding */
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   /* @media (max-width: 765px) {
+    
+  @media (max-width:765px) {
+   left:10px;
+ }
+ 
+ 
+  @media (max-width: 765px) {
     scroll-margin: 20px;
     scroll-snap-align: start;
     margin-left:10px;
-  } */
+  } 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
   
 `;
 

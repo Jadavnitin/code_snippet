@@ -510,6 +510,11 @@ h1{
     width:1rem;
   }
   }
+   @media (max-width: 410px) {
+    h1{
+      display: none;
+    }
+  }
 
 `;
 
