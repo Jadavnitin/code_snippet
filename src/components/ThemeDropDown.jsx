@@ -55,31 +55,7 @@ const ThemeDropDown = ({ onThemeSelect }) => {
     }, [showThemeDropDown]);
    
    const handleThemeSelect = (theme) => {
-      setSelectedTheme(theme); useEffect(() => {
-         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-               setShowLanguageDropDown(false);
-            }
-         };
-
-         if (showLanguageDropDown) {
-            document.body.style.overflow = "hidden"; // Disable scrolling
-            document.addEventListener("wheel", disableScroll, { passive: false });
-            document.addEventListener("touchmove", disableScroll, { passive: false });
-         } else {
-            document.body.style.overflow = "auto"; // Enable scrolling again
-            document.removeEventListener("wheel", disableScroll);
-            document.removeEventListener("touchmove", disableScroll);
-         }
-
-         document.addEventListener("mousedown", handleClickOutside);
-         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.body.style.overflow = "auto"; // Ensure scrolling is re-enabled
-            document.removeEventListener("wheel", disableScroll);
-            document.removeEventListener("touchmove", disableScroll);
-         };
-      }, [showLanguageDropDown]);
+      setSelectedTheme(theme);
       console.log(theme)
       onThemeSelect(theme);  // Pass the selected theme to the parent
       setShowThemeDropDown(false);
