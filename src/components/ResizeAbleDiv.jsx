@@ -113,4 +113,12 @@ const ResizableContainer = styled.div`
    @media (max-width: 765px) {
       transform: scale(0.6);
    }
+   
+   @media (max-width: 450px) {
+      transform: scale(0.45);
+   }
+   
+    @media (max-width: 325px) {
+      transform: scale(0.3);
+   }
 `;

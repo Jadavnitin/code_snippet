@@ -56,7 +56,6 @@ const ThemeDropDown = ({ onThemeSelect }) => {
    
    const handleThemeSelect = (theme) => {
       setSelectedTheme(theme);
-      console.log(theme)
       onThemeSelect(theme);  // Pass the selected theme to the parent
       setShowThemeDropDown(false);
    };
