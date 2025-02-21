@@ -124,6 +124,7 @@ const Navbar = () => {
   
   const onSvgExportClick = (e) => {
     e.preventDefault();
+    
     const resizableDiv = document.querySelector('.resizable-div');
 
     if (resizableDiv) {
@@ -143,8 +144,7 @@ const Navbar = () => {
 
       // Extract numeric scale
       let scale = parseInt(selectedSize) || 2;
-      console.log('Selected Size:', selectedSize);
-      console.log('Applied Scale:', scale);
+    
 
       // Calculate width increase based on scale
       let padding = 0;
@@ -158,7 +158,7 @@ const Navbar = () => {
       const newWidth = originalWidth + padding * 2;
       const newHeight = originalHeight + padding * 2;
 
-      console.log('New SVG Dimensions:', newWidth, 'x', newHeight);
+     
 
       // Create SVG wrapper
       const svgWrapper = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
