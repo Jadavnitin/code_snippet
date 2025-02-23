@@ -16,10 +16,9 @@ const LanguageDropDown = ({onLangSelect}) => {
    };
    
    
-   const disableScroll = (event) => {
-      event.preventDefault();
-   };
+  
    
+
    useEffect(() => {
       const handleClickOutside = (event) => {
          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -27,22 +26,30 @@ const LanguageDropDown = ({onLangSelect}) => {
          }
       };
 
+      const handleBodyScroll = (event) => {
+         // Allow scrolling inside the dropdown, prevent on the rest of the page
+         if (dropdownRef.current && dropdownRef.current.contains(event.target)) {
+            return;
+         }
+         event.preventDefault();
+      };
+
       if (showLanguageDropDown) {
-         document.body.style.overflow = "hidden"; // Disable scrolling
-         document.addEventListener("wheel", disableScroll, { passive: false });
-         document.addEventListener("touchmove", disableScroll, { passive: false });
+         document.body.style.overflow = "hidden"; // Prevent page scrolling
+         document.addEventListener("wheel", handleBodyScroll, { passive: false });
+         document.addEventListener("touchmove", handleBodyScroll, { passive: false });
       } else {
-         document.body.style.overflow = "auto"; // Enable scrolling again
-         document.removeEventListener("wheel", disableScroll);
-         document.removeEventListener("touchmove", disableScroll);
+         document.body.style.overflow = "auto"; // Re-enable page scrolling
+         document.removeEventListener("wheel", handleBodyScroll);
+         document.removeEventListener("touchmove", handleBodyScroll);
       }
 
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
          document.removeEventListener("mousedown", handleClickOutside);
          document.body.style.overflow = "auto"; // Ensure scrolling is re-enabled
-         document.removeEventListener("wheel", disableScroll);
-         document.removeEventListener("touchmove", disableScroll);
+         document.removeEventListener("wheel", handleBodyScroll);
+         document.removeEventListener("touchmove", handleBodyScroll);
       };
    }, [showLanguageDropDown]);
    
